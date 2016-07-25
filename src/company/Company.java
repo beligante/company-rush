@@ -11,6 +11,7 @@ public class Company implements FitnessWeightable<Company> {
     private int stock;
     private int fitnessValue;
     private int vendas;
+    private int gain;
     private List<Company> historico;
 
     public List<Company> getHistorico() {
@@ -23,6 +24,7 @@ public class Company implements FitnessWeightable<Company> {
         this.stock = company.stock;
         this.historico = new ArrayList<>(company.historico);
         this.historico.add(company);
+        this.fitnessValue = -1;
     }
 
     public Company(int inicialInvestiment) {
@@ -177,6 +179,7 @@ public class Company implements FitnessWeightable<Company> {
 
     public void finishRound(int sales) {
         vendas = sales;
+        gain = (getProductPrice() * sales);
         unitSales(sales);
         incrementCash(sales);
     }
@@ -185,8 +188,12 @@ public class Company implements FitnessWeightable<Company> {
         return vendas;
     }
 
+    public int getGain(){
+    	return gain;
+    }
+    
     private void incrementCash(int sales) {
-        cashOfCompany += (getProductPrice() * sales);
+        cashOfCompany += gain;
     }
 
     private void unitSales(int sales) {
@@ -240,5 +247,17 @@ public class Company implements FitnessWeightable<Company> {
 
     public int getStock() {
         return stock;
+    }
+    
+    public int similarityRate(Company company){
+    	int similarity = 0;
+    	for(int i = 0; i < company.companyVariablesContainers.getVariables().size(); i++){
+    		if(this.companyVariablesContainers.getVariables().get(i)
+    				.equals(company.companyVariablesContainers.getVariables().get(0))){
+    			similarity++;
+    		}
+    	}
+    	
+    	return similarity;
     }
 }

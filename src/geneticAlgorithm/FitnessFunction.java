@@ -1,9 +1,10 @@
 package geneticAlgorithm;
 
-import company.Company;
-import company.FitnessWeightable;
 import java.util.List;
 
-public interface FitnessFunction<T extends FitnessWeightable> {
+import company.FitnessWeightable;
+
+public interface FitnessFunction<T extends FitnessWeightable<T>> {
     T findFitness(T entity, List<T> population);
+    T findFitnessOfACompany(T company);
 }

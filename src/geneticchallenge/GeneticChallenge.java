@@ -1,8 +1,6 @@
 package geneticchallenge;
 
 import environment.Environment;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GeneticChallenge {
 
@@ -98,7 +96,7 @@ public class GeneticChallenge {
         int inicialCash = Integer.parseInt(args[2]);
         
         if (oponentType.equals("cpu")) {
-            return new CPUOponent(environment, inicialCash);
+            return new CPUOponent(inicialCash);
         } else if (oponentType.equals("player")) {
             return new PlayerOponent(environment);
         }

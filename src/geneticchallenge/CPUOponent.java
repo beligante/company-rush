@@ -1,16 +1,14 @@
 package geneticchallenge;
 
-import company.Company;
-import environment.Environment;
 import geneticAlgorithm.GeneticAlgorithm;
+
+import company.Company;
 
 public class CPUOponent implements Oponent {
 
-    private final Environment environment;
     private Company company;
     
-    CPUOponent(Environment environment, int inicialInvestiment) {
-        this.environment = environment;
+    CPUOponent(int inicialInvestiment) {
         company = new Company(inicialInvestiment);
         
         
@@ -21,10 +19,10 @@ public class CPUOponent implements Oponent {
     
     @Override
     public void startGame() throws Exception{
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(environment);
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
         
-        geneticAlgorithm.setPopulationSize(10);
-        geneticAlgorithm.setElitism(true);
+        geneticAlgorithm.setPopulationSize(300);
+        geneticAlgorithm.setElitism(false);
         geneticAlgorithm.setCrossoverRate(0.6d);
         geneticAlgorithm.setMutationRate(0.03d);
         geneticAlgorithm.setMaxGenerations(100);

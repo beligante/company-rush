@@ -1,11 +1,12 @@
 package geneticAlgorithm;
 
-import company.Company;
-import company.Config;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import company.Company;
+import company.Config;
 
 public class FitnessFunctionImpl implements FitnessFunction<Company>{
 
@@ -21,8 +22,6 @@ public class FitnessFunctionImpl implements FitnessFunction<Company>{
     
     @Override
     public Company findFitness(Company company, List<Company> population) {
-        
-        List<CustoBeneficio> cbs = new ArrayList<>();
         CustoBeneficio cbsAtual;
         for (Company cy : population) {
             cbsAtual = new CustoBeneficio(custoMap);
@@ -31,19 +30,21 @@ public class FitnessFunctionImpl implements FitnessFunction<Company>{
                     .calculatePercentualLucro(cy.cost(), cy.getMaxSalesValue());
             int f = cbsAtual.getCustoBeneficio();
             
-            if (!company.getHistorico().isEmpty() && (company.productionCapacity() >= ((Company) (company.getHistorico().get(company.getHistorico().size() - 1))).getStock())){
+            if (!company.getHistorico().isEmpty() 
+            		&& (company.productionCapacity() 
+            				>= (company.getHistorico().get(company.getHistorico().size() - 1)).getStock())){
                 f -= 0.2 * f;                
             }
-            
-//            if (!company.getHistorico().isEmpty() && (company.productionCapacity() + company.getStock() >= ((Company) (company.getHistorico().get(company.getHistorico().size() - 1))).getStock())){
-//                f -= 0.5 * f;                
-//            }
             
             cy.setFitnessValue(f);
             
         }
         
         return company;
+    }
+    
+    public Company findFitnessOfACompany(Company company){
+    	return findFitness(company, Arrays.asList(company));
     }
     
     private class CustoBeneficio{
@@ -56,7 +57,6 @@ public class FitnessFunctionImpl implements FitnessFunction<Company>{
         //percentual de lucro sobre as vendas
         // 1 - (Custo / VendaTota)
         double percentualLucro;
-        double percentualCusto;
         
         public CustoBeneficio calculatePercentualLucro(int custo, int vendaTotal){
             percentualLucro = 1 - (custo / (double) vendaTotal);
