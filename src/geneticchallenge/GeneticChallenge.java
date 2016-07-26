@@ -42,7 +42,7 @@ public class GeneticChallenge {
             return;
         }
         
-        int rodadas = 10;
+        int rodadas = 30;
         
         Market mercado = new Market(environment);
         

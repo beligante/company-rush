@@ -21,11 +21,11 @@ public class CPUOponent implements Oponent {
     public void startGame() throws Exception{
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
         
-        geneticAlgorithm.setPopulationSize(300);
-        geneticAlgorithm.setElitism(false);
+        geneticAlgorithm.setPopulationSize(500);
+        geneticAlgorithm.setElitism(true);
         geneticAlgorithm.setCrossoverRate(0.6d);
         geneticAlgorithm.setMutationRate(0.03d);
-        geneticAlgorithm.setMaxGenerations(100);
+        geneticAlgorithm.setMaxGenerations(200);
         geneticAlgorithm.setPrinter(new Printer() {
             @Override
             public void print(Object o) {

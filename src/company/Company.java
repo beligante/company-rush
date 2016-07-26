@@ -9,9 +9,12 @@ public class Company implements FitnessWeightable<Company> {
     private CompanyVariablesContainers companyVariablesContainers;
     public int cashOfCompany;
     private int stock;
-    private int fitnessValue;
+    private int fitnessValue = -1;
     private int vendas;
-    private int gain;
+    
+    //Variaveis de Historico
+    private int gain = -1;
+    private int productionCapacityOriginal;
     private List<Company> historico;
 
     public List<Company> getHistorico() {
@@ -24,7 +27,6 @@ public class Company implements FitnessWeightable<Company> {
         this.stock = company.stock;
         this.historico = new ArrayList<>(company.historico);
         this.historico.add(company);
-        this.fitnessValue = -1;
     }
 
     public Company(int inicialInvestiment) {
