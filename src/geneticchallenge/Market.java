@@ -93,8 +93,8 @@ public class Market {
 			e.printStackTrace();
 		}
 
-        opnents[0].roundSales(vendasOp0);
-        opnents[1].roundSales(vendasOp1);
+        opnents[0].roundSales(vendasOp0, environment);
+        opnents[1].roundSales(vendasOp1, environment);
 
         environment.randomVariables();
 

@@ -1,8 +1,8 @@
 package geneticchallenge;
 
 import geneticAlgorithm.GeneticAlgorithm;
-
 import company.Company;
+import environment.Environment;
 
 public class CPUOponent implements Oponent {
 
@@ -52,13 +52,13 @@ public class CPUOponent implements Oponent {
         return company.toString();
     }
 
-	@Override
-	public void roundSales(int i) {
+	@Override  
+	public void roundSales(int i, Environment enviroment) {
             int realSales = i;
             if(company.getStock() < i){
                 realSales = company.getStock();
             }
-            company.finishRound(realSales);
+            company.finishRound(realSales, enviroment);
 	}
 
     @Override

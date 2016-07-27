@@ -32,7 +32,6 @@ public class FitnessFunctionImpl implements FitnessFunction<Company>{
             int f = cbsAtual.getCustoBeneficio();
             
             if(isProduceMoreThatCanKeep(cy)){
-            	//System.out.println("passou");
             	f -= 0.2 * f; 
             }
             

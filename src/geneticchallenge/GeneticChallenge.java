@@ -1,5 +1,10 @@
 package geneticchallenge;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import company.Company;
 import environment.Environment;
 
 public class GeneticChallenge {
@@ -18,8 +23,19 @@ public class GeneticChallenge {
             help();
             return;
         }
-        
-        String oponentTypeA = args[0];
+        List<Company> winners = new ArrayList<Company>();
+        Oponent winner;
+        while(winners.size() < 30){
+        	winner = findWinner(args);
+        	if(winner != null){
+        		winners.add(winner.getCompany());
+        	}
+        }
+        System.out.println("Finished!");
+    }
+
+	private Oponent findWinner(String[] args) {
+		String oponentTypeA = args[0];
         String oponentTypeB = args[1];
         oponentTypeA = oponentTypeA.toLowerCase();
         oponentTypeB = oponentTypeB.toLowerCase();
@@ -27,7 +43,7 @@ public class GeneticChallenge {
         if (!oponentTypeA.equals("cpu") || !oponentTypeB.equals("cpu")) {
             
                 help();
-                return;
+                return null;
         }
         
         Oponent[] oponent = new Oponent[2];
@@ -39,7 +55,7 @@ public class GeneticChallenge {
         
         if (oponent[0] == null || oponent[1] == null) {
             help();
-            return;
+            return null;
         }
         
         int rodadas = 30;
@@ -73,14 +89,19 @@ public class GeneticChallenge {
         System.out.println(oponent[0]);
         System.out.println(oponent[1]);
         
+        Oponent winner = null;
         if(oponent[0].getCompany().getCashOfCompany() > oponent[1].getCompany().getCashOfCompany()){
+        	winner = oponent[0];
         	System.out.println("Oponente 0 foi o vencedor!");
         } else if(oponent[1].getCompany().getCashOfCompany() > oponent[0].getCompany().getCashOfCompany()){
         	System.out.println("Oponente 1 foi o vencedor!");
+        	winner = oponent[1];
         }else{
         	System.out.println("As empresas empataram!");
         }
-    }
+        
+        return winner;
+	}
     
     
 

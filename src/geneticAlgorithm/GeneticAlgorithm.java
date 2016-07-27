@@ -29,8 +29,8 @@ public class GeneticAlgorithm {
 	}
 
 	public Company findSolution(Company company) {
-		int generations = 0;
-		Company bestOfTheGeneration = company.getFitness() < 0 ? fitnessFunction.findFitnessOfACompany(company) : company;
+		int generations = 1;
+		Company bestOfTheGeneration = findBestSolutionForAGeneration(company);
 		Company candidate;
 		while(generations <= maxGenerations){
 			candidate = findBestSolutionForAGeneration(bestOfTheGeneration);

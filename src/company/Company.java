@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import environment.Environment;
+
 public class Company implements FitnessWeightable<Company> {
 
     private CompanyVariablesContainers companyVariablesContainers;
@@ -16,6 +18,7 @@ public class Company implements FitnessWeightable<Company> {
     private int gain = -1;
     private int productionCapacityOriginal;
     private List<Company> historico;
+    private Environment enviroment;
 
     public List<Company> getHistorico() {
         return historico;
@@ -25,7 +28,11 @@ public class Company implements FitnessWeightable<Company> {
         this.companyVariablesContainers = new CompanyVariablesContainers(company.companyVariablesContainers);
         this.cashOfCompany = company.cashOfCompany;
         this.stock = company.stock;
-        this.historico = new ArrayList<>(company.historico);
+        if(company.gain >= 0){
+        	this.historico = new ArrayList<>(company.historico);
+        }else{
+        	this.historico = new ArrayList<Company>();
+        }
         this.historico.add(company);
     }
 
@@ -179,8 +186,9 @@ public class Company implements FitnessWeightable<Company> {
         cashOfCompany -= cost();
     }
 
-    public void finishRound(int sales) {
-        vendas = sales;
+    public void finishRound(int sales, Environment enviroment) {
+    	this.enviroment = enviroment;
+    	vendas = sales;
         gain = (getProductPrice() * sales);
         unitSales(sales);
         incrementCash(sales);
@@ -261,5 +269,9 @@ public class Company implements FitnessWeightable<Company> {
     	}
     	
     	return similarity;
+    }
+    
+    public Environment getEnviroment(){
+    	return enviroment;
     }
 }
