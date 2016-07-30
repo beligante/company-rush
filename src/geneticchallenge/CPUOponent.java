@@ -1,16 +1,14 @@
 package geneticchallenge;
 
+import geneticAlgorithm.GeneticAlgorithm;
 import company.Company;
 import environment.Environment;
-import geneticAlgorithm.GeneticAlgorithm;
 
 public class CPUOponent implements Oponent {
 
-    private final Environment environment;
     private Company company;
     
-    CPUOponent(Environment environment, int inicialInvestiment) {
-        this.environment = environment;
+    CPUOponent(int inicialInvestiment) {
         company = new Company(inicialInvestiment);
         
         
@@ -21,13 +19,13 @@ public class CPUOponent implements Oponent {
     
     @Override
     public void startGame() throws Exception{
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(environment);
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm();
         
-        geneticAlgorithm.setPopulationSize(10);
+        geneticAlgorithm.setPopulationSize(500);
         geneticAlgorithm.setElitism(true);
         geneticAlgorithm.setCrossoverRate(0.6d);
         geneticAlgorithm.setMutationRate(0.03d);
-        geneticAlgorithm.setMaxGenerations(100);
+        geneticAlgorithm.setMaxGenerations(200);
         geneticAlgorithm.setPrinter(new Printer() {
             @Override
             public void print(Object o) {
@@ -54,13 +52,13 @@ public class CPUOponent implements Oponent {
         return company.toString();
     }
 
-	@Override
-	public void roundSales(int i) {
+	@Override  
+	public void roundSales(int i, Environment enviroment) {
             int realSales = i;
             if(company.getStock() < i){
                 realSales = company.getStock();
             }
-            company.finishRound(realSales);
+            company.finishRound(realSales, enviroment);
 	}
 
     @Override

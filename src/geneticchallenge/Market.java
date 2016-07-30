@@ -1,14 +1,12 @@
 package geneticchallenge;
 
 import company.Company;
-import environment.Config;
+
 import environment.Environment;
 
 public class Market {
 
     Environment environment;
-    private static final int MAX_VENDAS = 37000;
-    private static final int MIN_VENDAS = 10000;
 
     private static final String QUALIDADE_STR = "Qtde Clientes Qualidade: %d - { InvOp0: %d, InvOp1: %d }";
     private static final String PRECO_STR = "Qtde Clientes Preço: %d - { PrecoOp0: %d, PrecoOp1: %d }";
@@ -95,8 +93,8 @@ public class Market {
 			e.printStackTrace();
 		}
 
-        opnents[0].roundSales(vendasOp0);
-        opnents[1].roundSales(vendasOp1);
+        opnents[0].roundSales(vendasOp0, environment);
+        opnents[1].roundSales(vendasOp1, environment);
 
         environment.randomVariables();
 

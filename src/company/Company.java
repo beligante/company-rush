@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import environment.Environment;
+
 public class Company implements FitnessWeightable<Company> {
 
     private CompanyVariablesContainers companyVariablesContainers;
     public int cashOfCompany;
     private int stock;
-    private int fitnessValue;
+    private int fitnessValue = -1;
     private int vendas;
+    
+    //Variaveis de Historico
+    private int gain = -1;
+    private int productionCapacityOriginal;
     private List<Company> historico;
+    private Environment enviroment;
 
     public List<Company> getHistorico() {
         return historico;
@@ -21,7 +28,11 @@ public class Company implements FitnessWeightable<Company> {
         this.companyVariablesContainers = new CompanyVariablesContainers(company.companyVariablesContainers);
         this.cashOfCompany = company.cashOfCompany;
         this.stock = company.stock;
-        this.historico = new ArrayList<>(company.historico);
+        if(company.gain >= 0){
+        	this.historico = new ArrayList<>(company.historico);
+        }else{
+        	this.historico = new ArrayList<Company>();
+        }
         this.historico.add(company);
     }
 
@@ -175,8 +186,10 @@ public class Company implements FitnessWeightable<Company> {
         cashOfCompany -= cost();
     }
 
-    public void finishRound(int sales) {
-        vendas = sales;
+    public void finishRound(int sales, Environment enviroment) {
+    	this.enviroment = enviroment;
+    	vendas = sales;
+        gain = (getProductPrice() * sales);
         unitSales(sales);
         incrementCash(sales);
     }
@@ -185,8 +198,12 @@ public class Company implements FitnessWeightable<Company> {
         return vendas;
     }
 
+    public int getGain(){
+    	return gain;
+    }
+    
     private void incrementCash(int sales) {
-        cashOfCompany += (getProductPrice() * sales);
+        cashOfCompany += gain;
     }
 
     private void unitSales(int sales) {
@@ -240,5 +257,21 @@ public class Company implements FitnessWeightable<Company> {
 
     public int getStock() {
         return stock;
+    }
+    
+    public int similarityRate(Company company){
+    	int similarity = 0;
+    	for(int i = 0; i < company.companyVariablesContainers.getVariables().size(); i++){
+    		if(this.companyVariablesContainers.getVariables().get(i)
+    				.equals(company.companyVariablesContainers.getVariables().get(0))){
+    			similarity++;
+    		}
+    	}
+    	
+    	return similarity;
+    }
+    
+    public Environment getEnviroment(){
+    	return enviroment;
     }
 }
