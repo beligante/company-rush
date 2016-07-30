@@ -5,6 +5,12 @@ public class AcceptancePercentage implements EnvironmentVariable {
     final private static int size = AcceptancePercentageEnum.values().length;
     AcceptancePercentageEnum acceptance;
 
+    @Override
+    public int getValueAsInt() {
+        //TODO Implementar corretamente
+        return 1;
+    }
+
     enum AcceptancePercentageEnum {
         LITTLE,
         MEDIUM,

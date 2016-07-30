@@ -1,14 +1,12 @@
 package geneticchallenge;
 
 import company.Company;
-import environment.Config;
+
 import environment.Environment;
 
 public class Market {
 
     Environment environment;
-    private static final int MAX_VENDAS = 37000;
-    private static final int MIN_VENDAS = 10000;
 
     private static final String QUALIDADE_STR = "Qtde Clientes Qualidade: %d - { InvOp0: %d, InvOp1: %d }";
     private static final String PRECO_STR = "Qtde Clientes Preço: %d - { PrecoOp0: %d, PrecoOp1: %d }";
@@ -27,9 +25,9 @@ public class Market {
 
         Company c0 = opnents[0].getCompany(), c1 = opnents[1].getCompany();
 
-            System.err.println("Economic Situation: " + economicSituation);
-            System.err.println(String.format(QUALIDADE_STR, qtdeCQualidade, c0.getQualityImpact(), c1.getQualityImpact()));
-            System.err.println(String.format(PRECO_STR, qtdeCPreco, c0.getProductPrice(), c1.getProductPrice()));
+//            System.err.println("Economic Situation: " + economicSituation);
+//            System.err.println(String.format(QUALIDADE_STR, qtdeCQualidade, c0.getQualityImpact(), c1.getQualityImpact()));
+//            System.err.println(String.format(PRECO_STR, qtdeCPreco, c0.getProductPrice(), c1.getProductPrice()));
             
         if (c0.getProductPrice() < c1.getProductPrice()) {
             vendasOp0 = qtdeCPreco;
@@ -83,20 +81,20 @@ public class Market {
             vendasOp0 += Math.abs(consumo1);
         }
 
-        System.out.println("Vendas 0p0: " + vendasOp0);
-        System.out.println("Vendas 0p1: " + vendasOp1);
-
-        System.out.println("Fitness0: " + c0.getFitness());
-        System.out.println("Fitness1: " + c1.getFitness());
+//        System.out.println("Vendas 0p0: " + vendasOp0);
+//        System.out.println("Vendas 0p1: " + vendasOp1);
+//
+//        System.out.println("Fitness0: " + c0.getFitness());
+//        System.out.println("Fitness1: " + c1.getFitness());
         
         try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
-        opnents[0].roundSales(vendasOp0);
-        opnents[1].roundSales(vendasOp1);
+        
+        opnents[0].roundSales(vendasOp0, new Environment(environment));
+        opnents[1].roundSales(vendasOp1, new Environment(environment));
 
         environment.randomVariables();
 

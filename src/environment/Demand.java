@@ -4,6 +4,12 @@ public class Demand implements EnvironmentVariable {
 
     final private static int size = DemandEnum.values().length;
     DemandEnum demand;
+
+    @Override
+    public int getValueAsInt() {
+        //TODO implementar corretamente
+        return 1;
+    }
     public enum DemandEnum {
         VERY_LITTLE,
         LITTLE,

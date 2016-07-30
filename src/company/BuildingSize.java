@@ -12,13 +12,13 @@ public class BuildingSize implements CompanyVariable {
         int cost;
         switch (value) {
             case LITTLE:
-                cost = 20000;
+                cost = 5000;
                 break;
             case MEDIUM:
-                cost = 40000;
+                cost = 10000;
                 break;
             case BIG:
-                cost = 60000;
+                cost = 15000;
                 break;
             default:
                 cost = 0;

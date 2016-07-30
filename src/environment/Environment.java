@@ -6,6 +6,19 @@ import java.util.Map;
 import java.util.Random;
 
 public class Environment {
+    
+    public Environment(Environment e){
+        this.advertisingAcceptance = new AdvertisingAcceptance();
+        this.advertisingAcceptance.setValueByInt(e.advertisingAcceptance.getValueAsInt());
+        
+        this.econimicSituation = new EconimicSituation();
+        this.econimicSituation.setValueByInt(e.econimicSituation.getValueAsInt());
+    }
+
+    public Environment(AdvertisingAcceptance advertisingAcceptance, EconimicSituation econimicSituation) {
+        this.advertisingAcceptance = advertisingAcceptance;
+        this.econimicSituation = econimicSituation;
+    }
 
     final private AdvertisingAcceptance advertisingAcceptance;
     final private EconimicSituation econimicSituation;

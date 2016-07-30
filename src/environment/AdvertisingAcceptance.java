@@ -5,6 +5,30 @@ public class AdvertisingAcceptance implements EnvironmentVariable {
     final private static int size = AdvertisingAcceptanceEnum.values().length;
     AdvertisingAcceptanceEnum advertising;
 
+    @Override
+    public int getValueAsInt() {
+        int value = 0;
+        switch(advertising){
+            case VERY_LITTLE:
+                value = 0;
+                break;
+            case LITTLE:
+                value = 1;
+                break;
+            case MEDIUM:
+                value = 2;
+                break;
+            case BIG:
+                value = 3;
+                break;
+            case VERY_BIG:
+                value = 4;
+                break;
+        }
+        
+        return value;
+    }
+
     enum AdvertisingAcceptanceEnum {
         VERY_LITTLE,
         LITTLE,

@@ -12,19 +12,19 @@ public class Workers implements CompanyVariable {
 
         switch (value) {
             case VERY_LITTLE:
-                cost = 10000;
+                cost = 5000;
                 break;
             case LITTLE:
-                cost = 15000;
+                cost = 10000;
                 break;
             case MEDIUM:
-                cost = 20000;
+                cost = 15000;
                 break;
             case BIG:
-                cost = 30000;
+                cost = 20000;
                 break;
             case VERY_BIG:
-                cost = 40000;
+                cost = 25000;
                 break;
             default:
                 cost = 0;

@@ -17,5 +17,10 @@ public class EconimicSituation implements EnvironmentVariable{
     public int getEconomicSituationAtual() {
         return economicSituationAtual;
     }
+
+    @Override
+    public int getValueAsInt() {
+        return economicSituationAtual;
+    }
     
 }

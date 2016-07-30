@@ -18,16 +18,16 @@ public class QualitySpend implements CompanyVariable {
                 cost = 200;
                 break;
             case LITTLE:
-                cost = 1000;
+                cost = 500;
                 break;
             case MEDIUM:
-                cost = 1500;
+                cost = 1000;
                 break;
             case BIG:
-                cost = 5000;
+                cost = 1500;
                 break;
             case VERY_BIG:
-                cost = 15000;
+                cost = 3000;
                 break;
             default:
                 cost = 0;
